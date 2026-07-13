@@ -13,7 +13,7 @@ public class Tickets {
     private Integer ticketId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id",referencedColumnName = "user_id", nullable = false)
     private Users user; // only one user per ticket but there can be many tickets for the same user
 
     @ManyToOne
