@@ -1,8 +1,11 @@
 package com.MovieBookingApplication.MJCinema.Controllers;
 
+import com.MovieBookingApplication.MJCinema.DTO.AddCinemaRequest;
+import com.MovieBookingApplication.MJCinema.DTO.AddScheduleRequest;
 import com.MovieBookingApplication.MJCinema.DTO.ShowCinemaRequest;
 import com.MovieBookingApplication.MJCinema.DTO.ShowMoviePerCinemaResponse;
 import com.MovieBookingApplication.MJCinema.Services.CinemaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,4 +33,13 @@ public class CinemaController {
 
         return ResponseEntity.ok(cinemas);
     }
+
+    @PostMapping("/add")
+    public ResponseEntity<String> addCinema(@Valid @RequestBody AddCinemaRequest request) {
+        String response = cinemaService.addCinema(request);
+
+        return ResponseEntity.ok(response);
+    }
+
+
 }

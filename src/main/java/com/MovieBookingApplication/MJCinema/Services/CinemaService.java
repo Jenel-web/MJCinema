@@ -1,5 +1,6 @@
 package com.MovieBookingApplication.MJCinema.Services;
 
+import com.MovieBookingApplication.MJCinema.DTO.AddCinemaRequest;
 import com.MovieBookingApplication.MJCinema.DTO.ShowCinemaRequest;
 import com.MovieBookingApplication.MJCinema.DTO.ShowMoviePerCinemaResponse;
 import com.MovieBookingApplication.MJCinema.DTO.ShowingSchedResponse;
@@ -73,5 +74,28 @@ public class CinemaService {
 
         return cinemas;
     }
+
+    public String addCinema(AddCinemaRequest request){
+        String location = request.getLocation();
+        String cinemaName = request.getCinemaName();
+        int totalRows = request.getTotalRows();
+        int totalColumns = request.getTotalColumns();
+        int totalSeats = request.getTotalSeats();
+
+
+        Cinema newCinema = new Cinema();
+
+        newCinema.setLocation(location);
+        newCinema.setCinemaName(cinemaName);
+        newCinema.setTotalRows(totalRows);
+        newCinema.setTotalSeats(totalSeats);
+        newCinema.setTotalColumns(totalColumns);
+        newCinema.setSeatLayout(request.getSeatLayout());
+
+        cinemaRepository.save(newCinema);
+
+        return "Cinema Added Successfully";
+    }
+
 
 }
